@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Complaint</title>
+</head>
+
+<body>
+
+    <h2>Submit Complaint</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="title">Complaint Title</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Complaint Description</label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'logout' %}">Logout</a>
+
+</body>
+
+</html>

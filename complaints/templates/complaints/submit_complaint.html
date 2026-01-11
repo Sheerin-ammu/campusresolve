@@ -5,11 +5,13 @@
 </head>
 <body>
 
-<h2>Submit Complaint</h2>
+<h1>Submit Complaint</h1>
 
-<form method="POST">
+<form method="post">
     {% csrf_token %}
-    <textarea name="complaint" placeholder="Enter complaint"></textarea><br><br>
+
+    <textarea name="text" required></textarea><br><br>
+
     <button type="submit">Submit</button>
 </form>
 

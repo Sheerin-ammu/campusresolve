@@ -18,12 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
-def home_redirect(request):
-    return redirect('login')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_redirect),            # 🔥 THIS FIXES 404
     path('', include('complaints.urls')),
+
 ]
 

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'complaints/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="topbar">
+        <h2>👋 Welcome, {{ request.user.username }}</h2>
+        <a class="logout" href="/logout/">Logout</a>
+    </div>
+
+    <div class="card">
+        <h3>📢 Submit New Complaint</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="text" placeholder="Describe your issue clearly..." required></textarea>
+            <br><br>
+            <button type="submit">Submit Complaint</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>📄 Your Complaints</h3>
+
+        {% for c in complaints %}
+            <div class="complaint">
+                <p>{{ c.text }}</p>
+
+                <span class="badge {{ c.status }}">{{ c.status }}</span>
+
+                {% if c.admin_remark %}
+                    <p class="small"><b>Admin Remark:</b> {{ c.admin_remark }}</p>
+                {% endif %}
+
+                <p class="small">{{ c.created_at }}</p>
+            </div>
+        {% empty %}
+            <p class="small">No complaints submitted yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

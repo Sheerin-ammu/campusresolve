@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Complaint</title>
+    <link rel="stylesheet" href="{% static 'complaints/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h3>⚙ Update Complaint</h3>
+
+        <p>{{ complaint.text }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Status</label>
+            <select name="status">
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+                <option>Rejected</option>
+            </select>
+
+            <label>Admin Remark</label>
+            <textarea name="admin_remark">{{ complaint.admin_remark }}</textarea>
+
+            <br><br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

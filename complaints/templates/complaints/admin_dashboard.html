@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'complaints/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="topbar">
+        <h2>🛠 Admin Dashboard</h2>
+        <a class="logout" href="/logout/">Logout</a>
+    </div>
+
+    {% for c in complaints %}
+        <div class="card">
+            <p><b>User:</b> {{ c.user.username }}</p>
+            <p>{{ c.text }}</p>
+
+            <span class="badge {{ c.status }}">{{ c.status }}</span>
+
+            <br><br>
+            <a href="{% url 'update_complaint' c.id %}">
+                <button>Take Action</button>
+            </a>
+        </div>
+    {% empty %}
+        <p>No complaints available.</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
